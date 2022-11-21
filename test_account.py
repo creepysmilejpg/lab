@@ -20,16 +20,20 @@ class Testing:
 
     def test_deposit(self):
         assert self.acc1.deposit(30) is True
-        assert self.acc1.get_balance() == 30
+        assert self.acc1.get_balance() == pytest.approx(30, abs=0.001)
 
         assert self.acc2.deposit(-30) is False
+        assert self.acc2.deposit(0) is False
+        assert self.acc2.get_balance() == pytest.approx(0, abs=0.001)
 
     def test_withdraw(self):
         assert self.acc1.withdraw(30.5) is False
         assert self.acc1.deposit(30) is True
         assert self.acc1.withdraw(20.5) is True
-        assert self.acc1.get_balance() == 9.5
+        assert self.acc1.get_balance() == pytest.approx(9.5, abs=0.001)
 
         assert self.acc2.withdraw(-10.5) is False
+
         assert self.acc2.withdraw(0) is False
+        assert self.acc2.get_balance() == pytest.approx(0, abs=0.001)
 

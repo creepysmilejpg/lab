@@ -3,27 +3,27 @@ class Account:
     Class representing a bank account
     """
 
-    def __init__(self, name):
+    def __init__(self, name: str) -> None:
         """
         Initializes account name and balance
         :param name: Account name (i.e. John, Catherine, etc.)
         """
-        self.account_name = name  # 'Name'
-        self.account_balance = 0  # 0.00
+        self.__account_name = name  # 'Name'
+        self.__account_balance = 0  # 0.00
 
-    def deposit(self, amount):
+    def deposit(self, amount: float) -> bool:
         """
         Function to deposit money into account
         :param amount: amount of money to be deposited
         :return: returns if transaction was successful
         """
         try:
-            self.account_balance += amount  # 0.00 + amount in form of #.##
+            self.__account_balance += amount  # 0.00 + amount in form of #.##
 
-            if self.account_balance > 0:
+            if self.__account_balance > 0:
                 return True
             else:
-                self.account_balance = 0
+                self.__account_balance = 0
                 return False
 
         except TypeError:
@@ -37,7 +37,7 @@ class Account:
         except:
             return False
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: float) -> bool:
         """
         Function to withdraw money from account
         :param amount: amount of money to be withdrawn
@@ -45,11 +45,11 @@ class Account:
         """
         try:
             if amount > 0:
-                if self.account_balance >= amount:
-                    self.account_balance -= amount  # 0.00 + amount in form of #.##
+                if self.__account_balance >= amount:
+                    self.__account_balance -= amount  # 0.00 + amount in form of #.##
                     return True
                 else:
-                    self.account_balance = 0
+                    self.__account_balance = 0
                     return False
             else:
                 return False
@@ -62,16 +62,16 @@ class Account:
             print('Enter a valid number greater than zero and less than or equal to your balance')
             return False
 
-    def get_balance(self):
+    def get_balance(self) -> float:
         """
         Gets current account balance
         :return: returns balance
         """
-        return self.account_balance  # number in form of #.##
+        return self.__account_balance  # number in form of #.##
 
-    def get_name(self):
+    def get_name(self) -> str:
         """
         Gets current account name
         :return: returns name
         """
-        return self.account_name  # 'Name'
+        return self.__account_name  # 'Name'
